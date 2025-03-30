@@ -1,8 +1,6 @@
 name: detekt
 
-on:
-   push:
-     branches: [ main ]
+on: [ push, pull_request ]
      
 jobs:
    detekt:
@@ -15,4 +13,4 @@ jobs:
        - name: "detekt"
          uses: natiginfo/action-detekt-all@1.23.8
          with:
-          args:  --config detekt.yml
+          args:  --config lib/detekt.yml
