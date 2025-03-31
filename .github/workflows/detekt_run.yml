@@ -16,5 +16,8 @@ jobs:
           distribution: zulu
           java-version: 21
 
+      - name: Build with Gradle
+        run: ./gradlew check build --stacktrace --parallel
+
       - name: Run tests
-        uses: SELENIDE_URL="${{ vars.SELENIDE_URL }}" ./gradlew clean test
+        uses: ./gradlew clean test
