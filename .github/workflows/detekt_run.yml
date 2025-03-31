@@ -1,16 +1,25 @@
 name: detekt
 
-on: [ push, pull_request ]
+on: [push, pull_request]
      
 jobs:
-   detekt:
-     runs-on: ubuntu-latest
+  detekt:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v2
 
-     steps:
-       - name: "checkout"
-         uses: actions/checkout@v2
+      - name: "detekt"
+        uses: natiginfo/action-detekt-all@1.23.8
+        with:
+          args: --config lib/detekt.yml
 
-       - name: "detekt"
-         uses: natiginfo/action-detekt-all@1.23.8
-         with:
-          args:  --config lib/detekt.yml
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 21
+
+      - name: Run tests
+        uses: ./gradlew clean test
