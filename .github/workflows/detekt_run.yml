@@ -17,4 +17,4 @@ jobs:
           java-version: 21
 
       - name: Run tests
-        uses: ./gradlew clean test
+        uses: SELENIDE_URL="${{ vars.SELENIDE_URL }}" ./gradlew clean test
